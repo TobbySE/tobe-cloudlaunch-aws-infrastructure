@@ -1,0 +1,13 @@
+# AWS Credentials - never commit these!
+*.pem
+*.key
+credentials
+.aws/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# IDE files
+.vscode/
+.idea/
