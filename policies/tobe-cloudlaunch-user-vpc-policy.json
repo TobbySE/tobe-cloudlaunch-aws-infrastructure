@@ -1,0 +1,39 @@
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Sid": "VPCReadOnlyAccess",
+            "Effect": "Allow",
+            "Action": [
+                "ec2:DescribeVpcs",
+                "ec2:DescribeSubnets",
+                "ec2:DescribeRouteTables",
+                "ec2:DescribeInternetGateways",
+                "ec2:DescribeSecurityGroups",
+                "ec2:DescribeNetworkAcls",
+                "ec2:DescribeVpcEndpoints",
+                "ec2:DescribeNatGateways",
+                "ec2:DescribeVpcPeeringConnections",
+                "ec2:DescribeAvailabilityZones",
+                "ec2:DescribeRegions"
+            ],
+            "Resource": "*"
+        },
+        {
+            "Sid": "VPCSpecificAccess",
+            "Effect": "Allow",
+            "Action": [
+                "ec2:DescribeVpcs",
+                "ec2:DescribeSubnets",
+                "ec2:DescribeRouteTables",
+                "ec2:DescribeSecurityGroups"
+            ],
+            "Resource": "*",
+            "Condition": {
+                "StringEquals": {
+                    "ec2:Region": "us-east-1"
+                }
+            }
+        }
+    ]
+}
