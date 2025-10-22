@@ -1,0 +1,48 @@
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Sid": "ListAllBuckets",
+            "Effect": "Allow",
+            "Action": "s3:ListBucket",
+            "Resource": [
+                "arn:aws:s3:::tobe-cloudlaunch-site-bucket",
+                "arn:aws:s3:::tobe-cloudlaunch-private-bucket",
+                "arn:aws:s3:::tobe-cloudlaunch-visible-only-bucket"
+            ]
+        },
+        {
+            "Sid": "GetObjectSiteBucket",
+            "Effect": "Allow",
+            "Action": "s3:GetObject",
+            "Resource": "arn:aws:s3:::tobe-cloudlaunch-site-bucket/*"
+        },
+        {
+            "Sid": "GetPutObjectPrivateBucket",
+            "Effect": "Allow",
+            "Action": [
+                "s3:GetObject",
+                "s3:PutObject"
+            ],
+            "Resource": "arn:aws:s3:::tobe-cloudlaunch-private-bucket/*"
+        },
+        {
+            "Sid": "DenyDeleteEverywhere",
+            "Effect": "Deny",
+            "Action": [
+                "s3:DeleteObject",
+                "s3:DeleteObjectVersion"
+            ],
+            "Resource": "*"
+        },
+        {
+            "Sid": "DenyVisibleOnlyBucketContent",
+            "Effect": "Deny",
+            "Action": [
+                "s3:GetObject",
+                "s3:PutObject"
+            ],
+            "Resource": "arn:aws:s3:::tobe-cloudlaunch-visible-only-bucket/*"
+        }
+    ]
+}
